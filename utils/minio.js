@@ -23,7 +23,6 @@ const upload = async (config, minio, options) => {
       options.buffer,
       options.size
     );
-    console.log(rs);
     return rs;
   } catch (error) {
     console.error(error);

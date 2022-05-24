@@ -1,14 +1,16 @@
 const path = require("path");
 const app = require("express")();
+const env = require("./config/env.config");
 const minioUpload = require("./utils/upload-manager-v2")({
-  type: "minio",
-  accessKey: "hoailinh",
-  secretKey: "976431a@",
-  endPoint: "lubrytics.com",
-  port: 9900,
-  bulketName: "linh-test",
+  type: env.upload_type,
+  accessKey: env.accessKey,
+  secretKey: env.serectKey,
+  endPoint: env.endPoint,
+  port: env.port,
+  bulketName: env.bulketName,
   fieldName: "file",
 });
+
 app.post(
   "/file",
   minioUpload.uploadImageMiddleware(),
