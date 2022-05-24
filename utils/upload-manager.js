@@ -1,11 +1,11 @@
-const UploadManager = (config) => {
-  let handleUpload = genUploadManagerMiddleware(config.type);
+const UploadManager = (clientUpload) => {
+  let clientUpload = clientUpload;
 
-  function upload() {
-    return handleUpload.uploadMiddleware;
+  function upload(options) {
+    return handleUpload.uploadMiddleware(options);
   }
 
-  function getFile() {
+  function getFile(options) {
     return handleUpload.getFileMiddleware;
   }
 
@@ -27,9 +27,9 @@ const genUploadManagerMiddleware = (type) => {
 };
 
 const TYPE = {
-  minio: "MINIO",
-  aws: "AWS",
-  locals: "LOCAL",
+  minio: "minio",
+  aws: "aws",
+  locals: "local",
 };
 
 module.exports = {
